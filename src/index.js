@@ -1,7 +1,9 @@
+import { Application } from "stimulus"
+import { definitionsFromContext } from "stimulus/webpack-helpers"
 import "./main.css"
-import "./another_file"
 
-console.log('Hello Webpack Project.');
-document.getElementById("click-button").addEventListener("click", () => {
-  alert("Don't touch me!")
-})
+const application = Application.start()
+const context = require.context("./controllers", true, /\.js$/)
+application.load(definitionsFromContext(context))
+
+
